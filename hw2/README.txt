@@ -34,6 +34,7 @@ Total Hours Spent: 1.5/1.5
 		Only in HelloWorld uvision/mbed/LPC1768: ARM
 		Only in HelloWorld gcc/mbed/LPC1768: GCC_ARM
 	comparing the 2 ARM directories: 4 pairs of binary files differ; 7 files are unique
+	diff -r HelloWorld\ uvision/mbed/LPC1768/ARM/ HelloWorld\ gcc/mbed/LPC1768/GCC_ARM/
 		Only in HelloWorld gcc/mbed/LPC1768/GCC_ARM/: LPC1768.ld
 		Only in HelloWorld uvision/mbed/LPC1768/ARM/: LPC1768.sct
 		Only in HelloWorld uvision/mbed/LPC1768/ARM/: capi.ar
@@ -47,8 +48,19 @@ Total Hours Spent: 1.5/1.5
 		Binary files HelloWorld uvision/mbed/LPC1768/ARM/system_LPC17xx.o and HelloWorld gcc/mbed/LPC1768/GCC_ARM/system_LPC17xx.o differ
 
    What is the "Entry point address:" of your program?  (hint: using readelf)
-   	
-   
+   	go into the uvision directory, execute: (find . -type f -print0 | xargs -0 file) | grep "ELF"
+		./mbed/LPC1768/ARM/cmsis_nvic.o:      ELF 32-bit LSB relocatable, ARM, version 1 (SYSV), not stripped
+		./mbed/LPC1768/ARM/core_cm3.o:        ELF 32-bit LSB relocatable, ARM, version 1 (SYSV), not stripped
+		./mbed/LPC1768/ARM/startup_LPC17xx.o: ELF 32-bit LSB relocatable, ARM, version 1 (SYSV), not stripped
+		./mbed/LPC1768/ARM/sys.o:             ELF 32-bit LSB relocatable, ARM, version 1 (SYSV), not stripped
+		./mbed/LPC1768/ARM/system_LPC17xx.o:  ELF 32-bit LSB relocatable, ARM, version 1 (SYSV), not stripped
+	Note that this command yields the same results: find . -type f -name "*.o"
+	Get the entry point address for all these files: (find . -type f -name "*.o" -print0 | xargs -0 greadelf -a ) | grep "Entry point addr"
+		  Entry point address:               0x0
+		  Entry point address:               0x0
+		  Entry point address:               0x0
+		  Entry point address:               0x0
+		  Entry point address:               0x0
    
    a.	Exporting to uVision 
    b.	Exporting to GCC ARM Embedded 
