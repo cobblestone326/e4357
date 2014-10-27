@@ -16,3 +16,8 @@
 
 What is happening in the background?
 
+The keyboard presses go to electrical signals, into IO to the processor, processor is running a browser GUI that 
+somehow translates the search string into a request to Google, goes through a TCP/IP packet out the Wifi chip to 
+the local Wifi hotspot, then through switches, firewalls, internet service provider, internet backbone, received 
+by Google servers (or multiple servers, that all race to respond ASAP), the results may already have been cached,
+then data is sent back over the same route to one's computer, displayed on the screen.
