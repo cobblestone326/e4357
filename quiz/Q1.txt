@@ -6,16 +6,19 @@ Q1: Is there any compile error with the following code (if any)?
 	3[Arr] = 7; 
  
 Explain:
-
+	Syntax error; the second line should be:
+		Arr[3] = 7;
+	The above line really means:
+		*((unsigned int *)Arr + 3) = 7;
 
 
 
 --------------------------------------------------------------------
 Q2: What is the difference between the following 3 statements? 
 
-const int * px; 
-int const * px; 
-int * const px; 
+const int * px; : px points to a const int (i.e. *px cannot change)
+int const * px; : same as above; px points to a const int (i.e. *px cannot change)
+int * const px; : the px pointer (to int) cannot be changed (i.e. px cannot change)
 
 Is there any compile error for the following cases?
 case1: 
@@ -34,8 +37,9 @@ int * const px;
 px = & x; 
 
 Explain:
-
-
+no error in cases 1 and 2: px is a pointer to a const int; it is OK for it to point to a regular int
+error in case 3: the pointer px cannot be changed
+http://publications.gbdirect.co.uk/c_book/chapter8/const_and_volatile.html
 
 
 
@@ -51,7 +55,7 @@ Q3: Write a function to set or clear ith bit of a 32-bit register.
 	Where ith (0-based) := {0, 1, 2, …, 31 } 
 void reg_set(volatile unsigned int * pReg, int ith) 
 { 
-
+*pReg |= (1U << ith);
 
 
 
@@ -60,7 +64,7 @@ void reg_set(volatile unsigned int * pReg, int ith)
 
 void reg_clear(volatile unsigned int * pReg, int ith) 
 { 
-
+*pReg &= ~(1U << ith);
 
 
 
@@ -72,12 +76,9 @@ void reg_clear(volatile unsigned int * pReg, int ith)
 --------------------------------------------------------------------
 Q4: Write a swap function in C.
 void swap(unsigned int * px, unsigned int *py) { 
-
-
-
-
-
-
+unsigned int temp = *px;
+*px = *py;
+*py = temp;
 
 } 
 
@@ -92,7 +93,7 @@ printf(“%d\n”, a3 – a0);
 
 
 
-
+will print out 12
 
 
 
