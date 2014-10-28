@@ -1,0 +1,38 @@
+
+/*Program Example 14.1: Sets up a digital output pin
+    using control registers, and flashes an LED.
+*/
+
+// Defines
+#define FIO1DIR (*(volatile unsigned int *)(0x2009C020))
+#define FIO1PIN (*(volatile unsigned int *)(0x2009C034))
+#define LED1MASK (1 << 18)//microcontroller pin 32 is P1[18], bit 18 of the 0x2009C020 32-bit register
+#define LED2MASK (1 << 20)//microcontroller bin 34 is P1[18], bit 20 of the 0x2009C020 32-bit register
+#define LED3MASK (1 << 21)//microcontroller bin 35 is P1[18], bit 21 of the 0x2009C020 32-bit register
+#define LED4MASK (1 << 23)//microcontroller bin 37 is P1[18], bit 23 of the 0x2009C020 32-bit register
+
+#define NUMLEDS 4
+unsigned int LEDmasks[NUMLEDS] = {LED1MASK, LED2MASK, LED3MASK, LED4MASK};
+
+// Local function prototypes
+void delay(void);
+
+int main() {
+    unsigned char i;
+    for (i=0; i<NUMLEDS; i++) FIO1DIR |= LEDmasks[i];//turn on port bit for the LED pin
+    while (1) {
+        for (i=0; i<NUMLEDS; i++) {
+            FIO1PIN |= LEDmasks[i];//on
+            delay();
+            FIO1PIN &= ~(LEDmasks[i]);//off
+        }
+    }
+}
+
+void delay(void) {
+    int j;      //loop variable j
+    for (j=0; j<5000000;j++) {
+        j++;
+        j--;        //waste time
+    }
+}

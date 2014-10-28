@@ -1,0 +1,56 @@
+/* Program Example 14.3: uses digital input and output using control registers, and
+flashes an LED.  We'll use LEDs 1 and 2 on the mbed bort (P1[18] and P1[20]).  Switch input to pin 9.
+*/
+
+// Local function prototypes
+void delay(void);
+
+// Define digital I/O registers
+
+#define FIO0DIR0 (*(volatile unsigned char*)(0x2009C000))
+#define FIO0PIN0 (*(volatile unsigned char*)(0x2009C014))
+#define INPUT1MASK (1 << 0)//mbed DIP9 pin, microcontroller pin 46 is P0[0], bit 0 of the 0x2009C000 register
+
+#define FIO1DIR2 (*(volatile unsigned char *)(0x2009C022))
+#define FIO1PIN2 (*(volatile unsigned char *)(0x2009C036))
+#define LED1MASK (1 << 2)//microcontroller pin 32 is P1[18], bit 18 of the 0x2009C020 32-bit register
+#define LED2MASK (1 << 4)//microcontroller bin 34 is P1[18], bit 20 of the 0x2009C020 32-bit register
+
+//declare some global variables
+char a;
+char b;
+char i;
+
+int main () {
+    FIO0DIR0&= ~INPUT1MASK;      //set DIP9 to input
+    FIO1DIR2|=LED1MASK;
+    FIO1DIR2|=LED2MASK;
+    while(1) {
+        if ((FIO0PIN0 & INPUT1MASK) != 0){
+            a = LED1MASK;
+            b = LED2MASK;
+        }
+        else {
+            a=LED2MASK;
+            b=LED1MASK;
+        }
+        FIO1PIN2 |= a;
+        delay();
+        FIO1PIN2 &= ~a;
+        delay();
+        for (i=1;i<=3;i++) {
+            FIO1PIN2 |= b;
+            delay();
+            FIO1PIN2 &= ~b;
+            delay();
+        }
+    }
+}
+
+void delay(void) {
+    int j;      //loop variable j
+    for (j=0; j<5000000;j++) {
+        j++;
+        j--;        //waste time
+    }
+}
