@@ -1,0 +1,14 @@
+Monday 10/27: 2 hours
+  Came home after class andgot the GCC compiler installed on my Mac, and pyOCD working
+  Was able to create a gdb server and log in to the mbed board
+
+Tuesday 10/28: 1.5 hours
+  Played around with the mbed application board (joystick, LCD screen, temp sensor, etc.)
+  Comiled and downloaded several demos
+  
+Wednesday 10/29: 0.5 hours
+  Looked up XBee stuff; thinking about our group project
+
+Sunday 11/2:
+  1 hour of git practice: http://pcottle.github.io/learnGitBranching/?NODEMO
+  
