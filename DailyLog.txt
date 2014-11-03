@@ -11,4 +11,5 @@ Wednesday 10/29: 0.5 hours
 
 Sunday 11/2:
   1 hour of git practice: http://pcottle.github.io/learnGitBranching/?NODEMO
+  1 hour of reading Chapter 7 and doing the example 7.9 (modified, to use 2 UARTs on my 1 board)
   
