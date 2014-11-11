@@ -15,4 +15,16 @@ Sunday 11/2: 2.5 hours
   0.5 hours looking at UART traffic on my old Tektronix 2235 analog scope:
     can see the start bit (logic zero), 8 data bits (0,1,2,3,4,5,6,7), and stop bit (logic one)
     9600 baud (about 100us per bit)
-  
+
+Monday 11/3: 1 hour
+  Read some of Chapter 12 and did the Ethernet homework assignment with a classmate's board
+
+Tuesday 11/4: 2 hours
+  Researched Xbee modules for our project, ordered a bunch of stuff on SparkFun
+  Sent an email to my project group
+
+Friday 11/7: 1 hour
+  Read up on PC-Lint, best practices for writing C code, MISRA, etc.
+
+Sunday 11/9: 2 hours
+  Reverse engineered 2 of the PCBs purchased from Sparkfun, read more about lithium polymer battery charging
