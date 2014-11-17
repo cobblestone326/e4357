@@ -28,3 +28,18 @@ Friday 11/7: 1 hour
 
 Sunday 11/9: 2 hours
   Reverse engineered 2 of the PCBs purchased from Sparkfun, read more about lithium polymer battery charging
+
+Friday 11/14: 3 hours:
+  Worked on the project; got the mbed application board, SHT15 humidity and temperature sensor,
+    and the USB storage device all talking to the mbed board.  Logged temp/humidity data overnight.
+
+Saturday 11/15: 2 hours
+  Got the system working on battery power (2000mAh LiPo battery)
+    Put everything in a ziplock bag and into the freezer
+  Note: quite a bit of quiescent current draw (upwards of 100mA)
+
+Sunday: 6.5 hours
+  2 hours meeting with Drew Plant for the project; we're going to do triangulation among Xbee modules!
+  3 hours looking at the I2C traffic from my SHT15 sensor using an analog scope
+    Oh my gosh, time to get a digital scope
+  1.5 hours working on the circular buffer assignment
