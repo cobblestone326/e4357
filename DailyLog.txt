@@ -1,5 +1,5 @@
 Monday 10/27: 2 hours
-  Came home after class andgot the GCC compiler installed on my Mac, and pyOCD working
+  Came home after class and got the GCC compiler installed on my Mac, and pyOCD working
   Was able to create a gdb server and log in to the mbed board
 
 Tuesday 10/28: 1.5 hours
@@ -38,8 +38,39 @@ Saturday 11/15: 2 hours
     Put everything in a ziplock bag and into the freezer
   Note: quite a bit of quiescent current draw (upwards of 100mA)
 
-Sunday: 6.5 hours
+Sunday 11/16: 6.5 hours
   2 hours meeting with Drew Plant for the project; we're going to do triangulation among Xbee modules!
   3 hours looking at the I2C traffic from my SHT15 sensor using an analog scope
     Oh my gosh, time to get a digital scope
   1.5 hours working on the circular buffer assignment
+
+Thursday 11/27: 3 hours
+  Worked on analog front end of Morse code circuit:
+    Began by using an analog oscilloscope to probe the audio signal from a 3.5mm jack from my laptop
+    Used a resistor, capacitor, and diode to construct a very basic "envelope detector" circuit
+      Overall goal is to turn the tone pulses into 3.3V logic 1s and 0s
+
+Friday 11/28: 8 hours
+  More tinkering with circuits; looked up common emitter amplifiers, emitter follower buffers
+  Eventually got the circuit working!  LED on the mbed will now blink with each audio morse code pulse!
+    Using the alphabet sound file from http://www.learnmorsecode.com/
+
+Saturday 11/29: 10 hours
+  4 hours trying to properly configure a Series 2 Xbee module using the mbed:
+    I did not have a USB to Serial dongle to talk to the Xbee module directly, using the X-CTU software
+  1 hour to go to Frys to buy supplies (USB to RS232, miscellaneous electronics prototyping wires, integrated circuits, etc.)
+  5 hours working on Morse code decoder software, with mbed plugged into mbed application board
+    With each pulse, mbed LED lights and buzzer sounds
+    Created a simple state machine to decode dits (.) and dahs (-) to letters
+    Used an online morse code translator to create longer messages, and vary the timing
+      http://morsecode.scphillips.com/jtranslator.html
+
+Sunday 11/30: 9 hours
+  3 hours trying to talk to the Xbee module via USB
+    Cracked open the USB to RS232 adapter, found one FTDI chip (FT232RL) that converts USB to UART, separate chip that does UART to RS232
+    Looked up schematics, cut some traces on the PCB, resoldered some connections: I just want USB to UART
+      I can now talk successfully to/from my computer's USB port and the mbed using the USB to UART circuitry!
+        But still can't talk to the Xbee module using my hacked USB/UART adapter and the X-CTU software--bummer!
+  6 hours met with Drew, who has a USB to Xbee explorer (which did, in fact, work with the X-CTU software)
+    We were finally able to configure 1 Xbee as a router and 1 as a coordinator, could detect received signal strength index (RSSI)
+    Unfortunately, RSSI doesn't vary exponentially with distance as we'd expected... oh well
