@@ -2,22 +2,38 @@ BEGIN
 --------------------------------------------------------------------
 1. What is the _mask value for LED1? 
    What is the address of FIOSET?
-
-
-
-
+   
+   LED1 mask:
+      On GPIO port 1, LED1 mask is (1U << 18) = 262144U = 0b000000000000001000000000000000000 = 0x40000
+      LED1 is pin 32 of the LPC1768 processor, which is tied to GPIO port 1
+   Address of FIOSET:
+      For port 1: FIO1SET - 0x2009 C038
+   
+   All four LEDs are on GPIO port 1
+      Pin/port mappings:
+         #define LED1MASK (1 << 18)//microcontroller pin 32 is P1[18], bit 18 of the FIO1DIR 0x2009C020 32-bit register
+         #define LED2MASK (1 << 20)//microcontroller bin 34 is P1[20], bit 20 of the FIO1DIR 0x2009C020 32-bit register
+         #define LED3MASK (1 << 21)//microcontroller bin 35 is P1[21], bit 21 of the FIO1DIR 0x2009C020 32-bit register
+         #define LED4MASK (1 << 23)//microcontroller bin 37 is P1[37], bit 23 of the FIO1DIR 0x2009C020 32-bit register
+      Use FIO1DIR - 0x2009 C020 to set the GPIO direction (1 means digital output, 0 means digital input)
+      Don't mess with the mask; leave all 0s in FIO1MASK - 0x2009 C030
+      Use the following registers to set/clear/write/read to the bits corresponding to the 4 LEDs:
+         FIO1PIN - 0x2009 C034
+         FIO1SET - 0x2009 C038
+         FIO1CLR - 0x2009 C03C
 
 --------------------------------------------------------------------
 2. What is the RS232 Frame?
 
-
+Typically: one start bit, 8 data bits (no parity bit), 1 stop bit
 
 
 
 --------------------------------------------------------------------
 3. Explain the start and stop conditions of i2c?
 
-
+Start condition: a high to low transition of SDA when SCL is high
+Stop condition: a low to high transition of SDA while SCL is high
 
 
 
@@ -25,6 +41,7 @@ BEGIN
 --------------------------------------------------------------------
 4. Is the i2c acknowledge SDA LOW or SDA HIGH?
 
+I2C acknowledge is SDA LOW, since both SDA and SCL have pull-up resistors to Vcc.
 
 
 
@@ -33,6 +50,10 @@ BEGIN
 --------------------------------------------------------------------
 5. Tell me about the DDR3 write leveling Concept in one sentence.  
    (ref: slides)
+   
+   Due to physical routing constraints, clock and data signals sent to a memory module may not arrive at the exact same time;
+   DDR3 write leveling is a method to delay the data signal just enough so that the received data signal lines up with the
+   received clock signal, allowing for reliable capture of the data stream to be written to memory.
 
 
 
