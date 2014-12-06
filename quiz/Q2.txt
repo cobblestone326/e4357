@@ -1,34 +1,40 @@
 BEGIN
 --------------------------------------------------------------------
 Q1: How many microcontrollers in the mbed LPC1768 board?
-
+Two microcontrollers: one microcontroller, "mbed interface", to interface between USB and the programming of the LPC1768
+    target microcontroller, and the LPC1768 microcontroller itself 
 
 
 --------------------------------------------------------------------
 Q2: What is the size (in GB) of the Flash Memory ("USB Dsik") of the LPC1768?
+The discrete flash chip on the PCB is a AT45DB161D: 16 Mbit, or 0.002GB.  The mbed interface microcontroller writes data
+in this chip according to data sent/received on USB.
 
+Note that the LPC1768 has its own 512kB on-chip Flash ROM.
 
 
 
 --------------------------------------------------------------------
 Q3: Name 3 functions (or features) that mbed USB cable provided:
 
-1.
-2.
-3.
+1.  Built in USB drag and drop flash programmer
+2.  Ability to store different binaries on the mbed board itself
+3.  With some additional work, can interface to a PC to run a gdb server/client session
 
 
 --------------------------------------------------------------------
 Q4: What is the name of the Ethernet PHY chip in the mbed board (LPC1768)?
-
-
-
+Texas Instruments DP83848J
+"PHYTER Mini LS Commercial Temperature Single Port 10/100 Mb/s Ethernet Transceiver"
+http://www.ti.com/product/dp83848j
 
 
 --------------------------------------------------------------------
 Q5: Reference LPC17xx_UM10360.pdf (Chapter 2)
     What are the GPIO address window?
-
+    From the memory map, page 13, GPIO addresses are 0x2009 C000 - 0x2009 FFFF
+    Pin function select register details for GPIO start on pg. 117
+    See GPIO register map, Table 102 on pg. 131
 
 
 
