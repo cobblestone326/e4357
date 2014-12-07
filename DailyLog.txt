@@ -74,3 +74,7 @@ Sunday 11/30: 9 hours
   6 hours met with Drew, who has a USB to Xbee explorer (which did, in fact, work with the X-CTU software)
     We were finally able to configure 1 Xbee as a router and 1 as a coordinator, could detect received signal strength index (RSSI)
     Unfortunately, RSSI doesn't vary exponentially with distance as we'd expected... oh well
+    
+Saturday 12/5: 4 hours
+  1 hour on the ELUA homework assignment
+  4 hours finishing up quizzes
