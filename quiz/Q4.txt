@@ -56,8 +56,13 @@ Q5:
 What is the address of ledArr[0]? 
 What is the address of ch? 
 
-ledArrr[0] is a static variable; ch is a local variable in main so it will be on the stack.
+This was a tricky one.  I know ledArr[0] would be a global variable (not a const), so it should just be in
+static global variable space.  ch is a local variable in main, so it should be on the stack
+Playing around with HelloWorld with gdb via pyOCD (and turning off compiler optimizations),
+it looks like the stack grows down from 0x1000 8000, and the heap grows up from about 0x1000 0198
 
+http://developer.mbed.org/handbook/Memory-Model supports this finding, as does the datasheet
+Datasheet shows that the 32kB of local static RAM is located from 0x1000 0000 to 0x1000 8000
 
 /* 
 * Enter a hex number [0-9a-fA-F]; Decode it in 4-bit binary format and display them on 4 on board leds. 
