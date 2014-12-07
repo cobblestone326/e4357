@@ -4,24 +4,48 @@ Q1: Implement the following inline functions:
 inline int CircularBufferIsFull(CircularBuffer* que) 
 inline int CircularBufferIsEmpty(CircularBuffer* que) 
 
+inline int CircularBufferIsFull(CircularBuffer* que) {
+   if (que->readPointer == 0) {
+        if (que->writePointer == que->mask) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        if (que->readPointer - que->writePointer == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+inline int CircularBufferIsEmpty(CircularBuffer* que) {
+    return que->readPointer == que->writePointer;
+}
 
 
 
 --------------------------------------------------------------------
 Q2: How to compute "Interrupt Latency"?
+To measure it, use an oscilloscope.  Probe one GPIO input, which when toggled generates the interrupt; 
+simultaneously probe a GPIO output, which is toggled in the interrupt service routine.
+Then compute the time difference between the events
+To theoretically predict the latency, you might look at the disassembly;
+however, if you're using an RTOS or other complicated interrupt handlers, this may prove difficult
 
 
 
 --------------------------------------------------------------------
 Q3: Serial pc(USBTX, USBRX); // tx, rx 
     What API (function) do you use to change the baud rate?
-
+	pc.baud(9600);
 
 
 
 --------------------------------------------------------------------
 Q4: How many bit(s) does TDO have? Is TDO an input or output type? (Ref: JTAG Pins) 
-
+	TDO is "test data out", so it is an output (e.g. out from target microcontroller to your PC)
+	TDO is the source of a serial data stream, so it doesn't really have "bits" per se
 
 
 
@@ -31,6 +55,8 @@ Q4: How many bit(s) does TDO have? Is TDO an input or output type? (Ref: JTAG Pi
 Q5:
 What is the address of ledArr[0]? 
 What is the address of ch? 
+
+ledArrr[0] is a static variable; ch is a local variable in main so it will be on the stack.
 
 
 /* 
