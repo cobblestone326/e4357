@@ -7,13 +7,13 @@ inline int CircularBufferIsEmpty(CircularBuffer* que)
 inline int CircularBufferIsFull(CircularBuffer* que) {
    if (que->readPointer == 0) {
         if (que->writePointer == que->mask) {
-            return true;
+            return true;//head is at index 0, tail is at the very end of the buffer
         } else {
             return false;
         }
     } else {
         if (que->readPointer - que->writePointer == 1) {
-            return true;
+            return true;//write pointer immediately precedes read pointer, to circular buffer is full
         } else {
             return false;
         }
