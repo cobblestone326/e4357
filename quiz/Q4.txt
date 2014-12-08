@@ -56,6 +56,10 @@ Q5:
 What is the address of ledArr[0]? 
 What is the address of ch? 
 
+Address of ledArr[0] should be at the bottom of the heap, right after the read-write and zero-initialize blocks
+	(somewhere around 0x1000 0198)
+Address of ch should be at the top of the stack (somewhere around 0x1000 7FF0)
+
 This was a tricky one.  I know ledArr[0] would be a global variable (not a const), so it should just be in
 static global variable space.  ch is a local variable in main, so it should be on the stack
 Playing around with HelloWorld with gdb via pyOCD (and turning off compiler optimizations),
