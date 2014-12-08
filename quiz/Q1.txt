@@ -6,9 +6,11 @@ Q1: Is there any compile error with the following code (if any)?
 	3[Arr] = 7; 
  
 Explain:
-	Syntax error; the second line should be:
+	Produced an error; error: expected unqualified-id before numeric constant
+	What's in brackets should be the index of the item in the array that you would like to modify
+	Should be:
 		Arr[3] = 7;
-	The above line really means:
+	Which means:
 		*((unsigned int *)Arr + 3) = 7;
 
 
